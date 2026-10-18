@@ -11,3 +11,28 @@
 @media(max-width:600px){.copy-fallback{font-size:16px}.app{padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right))}footer{padding-bottom:max(17px,env(safe-area-inset-bottom))}}
 .day-ticket.locked{background:#eeede3;border-color:#cdd1c4;color:#7e8877;box-shadow:none}.day-ticket.locked:hover{transform:none;background:#eeede3}.day-ticket.locked .object-art{opacity:.7}.day-ticket.locked .ticket-top{color:#7e8877}.week-row.locked{color:#89927f}.locked-label{font:9px monospace;letter-spacing:1px;text-transform:uppercase;border:1px solid #c9cebd;border-radius:3px;padding:7px 9px}
 .final-reveal-note{font:10px/1.6 monospace;color:#7b8572;text-align:center;padding:14px 12px;background:#e9ecdc;border:1px dashed #b9c1ab;border-radius:5px}.final-combinations{text-align:left;margin-top:35px;border-top:1px solid var(--line);padding-top:27px}.final-combinations>h2{font-size:27px;font-weight:800;letter-spacing:-.8px;margin-top:7px}.final-combinations>p{font-size:12px;color:var(--muted);line-height:1.6;margin:9px 0 21px}.combo-ranking{border:1px solid #bec5b4;border-radius:6px;background:#fbf8ee;margin-top:11px;overflow:hidden}.combo-ranking>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:17px;cursor:pointer;list-style:none}.combo-ranking>summary>div{display:flex;flex-direction:column;gap:5px}.combo-ranking>summary b{font:10px monospace;letter-spacing:1px}.combo-ranking>summary span{font-size:10px;color:#7b8373}.combo-ranking>summary>strong{font:10px monospace;white-space:nowrap}.combo-ranking>summary i{font-style:normal;margin-left:12px}.combo-ranking[open]>summary{border-bottom:1px solid #cbd0c1;background:#e9ecdc}.combination-row{display:grid;grid-template-columns:32px minmax(0,1fr) 42px;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px dashed #d8dacd}.combination-row.your-combination{background:#f4dfbf}.combo-position{font:18px Georgia,serif;font-style:italic;align-self:center}.ranked-items{min-width:0}.ranked-drawings{display:flex;align-items:center;gap:4px;margin-bottom:3px}.your-pick-label{font:8px monospace;letter-spacing:.5px;background:var(--ink);color:var(--paper);border-radius:3px;padding:4px 5px;margin-left:5px;white-space:nowrap}.ranked-items>b{font-size:11px;line-height:1.5;display:block}.ranked-items>span{font:9px/1.5 monospace;color:#68745e;display:block;margin-top:5px}.combo-points{display:flex;flex-direction:column;align-items:center;gap:4px}.combo-points>b{font:700 22px Arial,sans-serif;letter-spacing:-.8px}.combo-points>span{font:8px monospace;color:#7b8572}.your-rank-divider{font:8px monospace;letter-spacing:1px;padding:16px 16px 9px;color:#737e68}.rank-footnote{font:9px/1.7 monospace;color:#7d8675;text-align:center;padding:15px 18px}.final-sources{padding:0 17px 10px}.final-sources>.source-row{overflow-wrap:anywhere}@media(max-width:600px){.final-combinations>h2{font-size:24px}.final-combinations>p{font-size:10px}.combo-ranking>summary{padding:14px 12px}.combo-ranking>summary b{font-size:9px}.combo-ranking>summary span{font-size:8px}.combo-ranking>summary>strong{font-size:8px}.combination-row{grid-template-columns:24px minmax(0,1fr) 33px;gap:6px;padding:10px}.combo-position{font-size:16px}.ranked-items>b{font-size:9px}.ranked-items>span{font-size:7px}.ranked-drawings{gap:1px}.ranked-drawings>.object-art{width:33px;height:28px}.your-pick-label{font-size:6px;padding:3px 4px;margin-left:2px;letter-spacing:0}.combo-points>b{font-size:19px}.combo-points>span{font-size:6px}.rank-footnote{font-size:7px;padding:12px}.final-reveal-note{font-size:8px}}
+
+/* Phones: fit a whole round (scene, eight cards and the lock bar) on one screen without scrolling. */
+@media (max-width:600px){
+  .masthead{height:50px}
+  .game-top{padding:3px 0 1px}
+  .round-steps>button{padding:3px 0 6px;gap:3px;font-size:8px}
+  .round-steps button>span{width:19px;height:19px;font-size:8px}
+  .game .question{padding:5px 0 5px}
+  .game .question h1{font-size:19px;letter-spacing:-.5px;margin-top:2px}
+  .game .question>p{display:none}
+  .game .target-definition{font-size:8px}
+  .game .instrument{zoom:.6}
+  .game .selection-heading,.game .definition-note{display:none}
+  .game .cards{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-top:6px}
+  .game .item-card{min-height:0;padding:14px 3px 6px}
+  .game .item-card .object-art{width:52px;height:42px;margin:0 0 1px}
+  .game .item-card .card-subtitle{display:none}
+  .game .item-card .card-name{font-size:10px;line-height:1.2}
+  .game .item-card .card-number{font-size:8px;top:4px;left:5px}
+  .game .item-card .check-circle{width:16px;height:16px;font-size:9px;top:4px;right:4px}
+  .game .lock-bar{padding-top:7px;margin:6px 0 0;gap:3px 10px}
+  .game .lock-hint{margin-top:-2px}
+  .app:has(.game) footer{display:none}
+  .reveal .next-button{position:sticky;bottom:max(10px,env(safe-area-inset-bottom));z-index:8;box-shadow:0 6px 16px #202d3c33}
+}
