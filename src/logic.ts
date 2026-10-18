@@ -20,4 +20,9 @@ export function canOpenDay(d:number,today:string,mode:'daily'|'practice',savedDa
 export function nextReset(now=new Date()){const key=dateKey(now);let lo=now.getTime(),hi=lo+27*3600000;while(hi-lo>1){const mid=Math.floor((lo+hi)/2);if(dateKey(new Date(mid))===key)lo=mid;else hi=mid;}return new Date(hi);}
 export function streak(records:Record<string,Progress>,today:string){let k=records[today]?.complete?today:addDate(today,-1),n=0;while(records[k]?.complete){n++;k=addDate(k,-1);}return n;}
 export function format(v:number,cat:Category){return cat==='price'?new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:v%1?2:0}).format(v):`${new Intl.NumberFormat('en-US',{maximumFractionDigits:cat==='calories'?0:2}).format(v)} ${meta[cat].unit}`;}
-export function share(day:number,answers:Answer[],practice=false,gameUrl='https://dead-even-workshop.beigewren9.chatgpt.site/'){const total=answers.reduce((s,a)=>s+a.score,0);return `DEAD EVEN #${String(day+1).padStart(3,'0')}${practice?' · PRACTICE':''}\n${answers.map((a,i)=>`${meta[categories[i]].label.toUpperCase().padEnd(8)} ${a.score>=95?'━━●━━':a.score>=80?'━●━━━':a.score>=50?'●━━━━':'○━━━━'} ${a.score}`).join('\n')}\n${total} / 500\nHow close can you get?\n${gameUrl}`;}
+export function share(day:number,answers:Answer[],practice=false,gameUrl='https://zsnajar.github.io/dead-even/'){
+ const total=answers.reduce((s,a)=>s+a.score,0);
+ let link='https://zsnajar.github.io/dead-even/';
+ try{const url=new URL(gameUrl.trim());if(['https:','http:'].includes(url.protocol)){url.search='';url.hash='';link=url.href;}}catch{/* Keep the public game URL if a supplied link is invalid. */}
+ return [`DEAD EVEN #${String(day+1).padStart(3,'0')}${practice?' · PRACTICE':''}`,`${total}/500`,'',...answers.map((a,i)=>`${meta[categories[i]].label}: ${a.score}/100`),'',link].join('\n');
+}
