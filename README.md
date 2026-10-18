@@ -67,13 +67,13 @@ Tap cards to select; tap again to remove. A fourth choice replaces the most rece
 
 ## Verification limits
 
-The production build and automated logic/DOM interaction tests are run in this environment. A supported browser-control tool is unavailable, so real-browser screenshot and mobile-device visual QA could not be performed here. DOM tests exercise actual React interactions but do not validate pixel layout, audible playback or animation appearance.
+The production build and automated logic/DOM interaction tests are run in this environment. The initial build used automated logic and DOM checks; physical iPhone and Safari visual QA remain unverified. DOM tests exercise actual React interactions but do not validate pixel layout, audible playback or animation appearance.
 
 ## Public sharing and GitHub Pages
 
 The copy-results text includes the URL of the deployment being played, including a GitHub Pages repository subpath. The current Sites deployment has public access enabled.
 
-A GitHub Pages workflow is included at `.github/workflows/pages.yml`. After pushing this repository to GitHub, set Settings → Pages → Source to GitHub Actions. Pushing `main` runs the tests and builds/deploys `dist/`. Vite uses relative asset URLs so both a domain root and a repository subpath work. No GitHub account or repository has been provisioned by the current environment; publishing there still requires a confirmed GitHub connection.
+A GitHub Pages workflow is included at `.github/workflows/pages.yml`. After pushing this repository to GitHub, set Settings → Pages → Source to GitHub Actions. Pushing `main` runs the tests and builds/deploys `dist/`. Vite uses relative asset URLs so both a domain root and a repository subpath work. The public repository is ZSNajar/dead-even, with GitHub Actions selected as the Pages source.
 
 Artwork was audited for distinct object forms and serving quantities. There are separate code-drawn SVGs for statue-only vs pedestal-inclusive Liberty; cherries, eight strawberries and grapes; whole vs diced watermelon; burger vs breakfast muffin; cat vs dog; football goal vs tennis net; and two/three/four-item portions and product packs. These are editable vector drawings authored directly in code, with no image-generator or external raster assets. They are stylized illustrations, not photographic product reproductions.
 
