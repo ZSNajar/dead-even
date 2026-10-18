@@ -1,0 +1,10 @@
+import React from 'react';
+import {renderToStaticMarkup} from 'react-dom/server';
+import {writeFileSync} from 'node:fs';
+import {Art} from '../src/Art';
+import {allItems} from '../src/data';
+const items=[...new Map(allItems.filter(i=>i.category!=='distance').map(i=>[i.art,i])).values()];
+const rows=Math.ceil(items.length/5);
+const markup=renderToStaticMarkup(<svg xmlns="http://www.w3.org/2000/svg" width="1000" height={rows*145+40} viewBox={`0 0 1000 ${rows*145+40}`}><rect width="100%" height="100%" fill="#f6f1e5"/>{items.map((item,i)=><g key={item.id} transform={`translate(${i%5*200} ${Math.floor(i/5)*145+10})`}><rect x="8" y="4" width="184" height="135" rx="8" fill="#fff9ee" stroke="#d9d5c8"/><Art kind={item.art} x={40} y={8} width={120} height={100}/><text x="100" y="124" textAnchor="middle" fill="#202d3c" fontSize="11" fontFamily="Arial">{item.name}</text></g>)}</svg>);
+writeFileSync(process.argv[2],markup);
+console.log(`${items.length} different drawings rendered for inspection.`);
