@@ -1,5 +1,10 @@
 import type {CSSProperties} from 'react';
 import {motion} from 'motion/react';
+import {weightArt} from './ArtWeight';
+import {foodArt} from './ArtFood';
+import {heightArt} from './ArtHeight';
+import {priceArt} from './ArtPrice';
+const moreArt={...weightArt,...foodArt,...heightArt,...priceArt};
 const ink='#202d3c',cream='#fff9e9',orange='#f48446',blue='#9ccddd',mint='#aac9a0',yellow='#f5ca66',coral='#ed9b8d';
 type Props={kind:string;className?:string;style?:CSSProperties;x?:number;y?:number;width?:number|string;height?:number|string};
 function LibertyFigure(){return <g><path fill={mint} d="m43 88 7-35-9-18-4-15 7-3 8 21 9 6 13-1 6 44Z"/><path d="m52 56-4 24m15-26-3 28m10-23 3 23M42 20v-7"/><path fill={orange} d="M38 12q-4-5 3-12 1 5 5 7 3 6-8 5Z"/><path fill={mint} d="M57 44q-6-4-4-13 10-9 18-1l-1 14Z"/><path fill={cream} d="m69 49 13 3-5 22-13-4Z"/><path fill={mint} d="m51 31-5-9 10 4 1-12 5 11 6-11 1 13 12-5-7 10Z"/><path d="M60 35h1m6 0h1m-8 5h6" strokeWidth="1.3"/><path d="m52 50 12 7m-11 7 10 7" stroke="#709779" strokeWidth="1.4"/></g>;}
@@ -66,7 +71,7 @@ case '3x-banana':drawing=<>{[0,1,2].map(i=><g key={i} transform={`translate(${i*
 case 'burger-fries':drawing=<><Art kind="fries" x={54} y={7} width={63} height={79}/><Art kind="burger" x={2} y={21} width={80} height={71}/></>;break;
 case 'ship':drawing=<><path fill={ink} d="M6 66h108L98 84H21Z"/><path fill="#a65248" d="M14 76h93l-9 8H21Z"/><path fill={cream} d="M17 54h85v12H17Z"/><path fill={cream} d="M26 46h70v8H26Z"/>{[33,49,65,81].map(n=><g key={n}><path fill={orange} d={`M${n} 46V31h8v15Z`}/><path d={`M${n} 31h8`} strokeWidth="4"/><rect x={n+2} y="27" width="4" height="2" fill={orange} strokeWidth="1"/></g>)}<path d="M20 64V28m-1 4L8 62m12-25 21 26M99 63V35m0 3 12 25m-12-20L84 63" strokeWidth="1"/>{[25,34,43,52,61,70,79,88,97].map(n=><path key={n} d={`M${n} 58h2m-2 13h2`} strokeWidth="1.5"/>)}<path d="M14 90q11-6 22 0t22 0 22 0 22 0" stroke={blue} strokeWidth="1.6"/></>;break;
 case 'register':drawing=<><path fill={mint} d="M25 44h71v40H25Z"/><path fill={cream} d="M43 44V14h36v30"/><path d="M50 23h21m-21 8h15"/><rect fill={ink} x="35" y="50" width="51" height="13" rx="2"/><path d="M36 74h13m7 0h8m8 0h10"/></>;break;
-default:drawing=<><rect fill={yellow} x="27" y="25" width="66" height="59" rx="8"/><path d="M27 40h66M60 25v59"/></>;
+default:drawing=moreArt[kind]?.()??<><rect fill={yellow} x="27" y="25" width="66" height="59" rx="8"/><path d="M27 40h66M60 25v59"/></>;
 }
 return <svg className={`object-art ${className}`} style={style} x={x} y={y} width={width} height={height} viewBox="0 0 120 100" fill="none" stroke={ink} strokeWidth="2.7" strokeLinejoin="round" strokeLinecap="round" aria-hidden="true"><ellipse cx="61" cy="92" rx="35" ry="3" fill={ink} opacity=".08" stroke="none"/>{drawing}</svg>;
 }
