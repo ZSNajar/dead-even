@@ -14,12 +14,13 @@ export function best(p:Puzzle){return rankedCombinations(p)[0];}
 export function submit(p:Puzzle,ids:string[]):Answer{if(ids.length!==3||new Set(ids).size!==3||ids.some(id=>!p.items.some(i=>i.id===id)))throw Error('Choose exactly three unique items');const total=tidy(ids.reduce((s,id)=>s+p.items.find(i=>i.id===id)!.value,0));return {ids:[...ids],total,score:score(total,p.target.value),error:Math.abs(total-p.target.value)/p.target.value};}
 export function validate(p:Puzzle){if(p.items.length!==8||new Set(p.items.map(x=>x.id)).size!==8)throw Error('Eight unique cards required');for(const item of [p.target,...p.items])if(item.category!==p.category||item.value<=0||!Number.isFinite(item.value)||!item.definition||!item.source||!item.sourceDate)throw Error(`Invalid item ${item.id}`);const errors=combinations(p.items).map(a=>Math.abs(a.reduce((s,x)=>s+x.value,0)-p.target.value)/p.target.value);if(Math.min(...errors)>.05||Math.max(...errors)<.35||errors.filter(e=>e<=.15).length<3)throw Error(`Unfair puzzle ${p.id}`);return errors;}
 export const launchDate='2026-10-18';
-export function dateKey(d=new Date()){return new Intl.DateTimeFormat('en-CA',{timeZone:'America/New_York',year:'numeric',month:'2-digit',day:'2-digit'}).format(d);}
+// Days follow the player's own clock: a new daily opens at their local midnight.
+export function dateKey(d=new Date()){const p=(n:number)=>String(n).padStart(2,'0');return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;}
 export function addDate(key:string,n:number){return new Date(Date.parse(key+'T12:00:00Z')+n*86400000).toISOString().slice(0,10);}
 export function dayIndex(key:string){return Math.floor((Date.parse(key+'T12:00:00Z')-Date.parse(launchDate+'T12:00:00Z'))/86400000);}
 export function canOpenDay(d:number,today:string,mode:'daily'|'practice',savedDaily?:Progress){const current=dayIndex(today);if(!Number.isInteger(d)||d<0||d>=7||d>current)return false;return mode==='daily'?(d===current||!!savedDaily):(d<current||!!savedDaily?.complete);}
-// Find the first instant on the next New York calendar date: works on 23/25-hour DST days.
-export function nextReset(now=new Date()){const key=dateKey(now);let lo=now.getTime(),hi=lo+27*3600000;while(hi-lo>1){const mid=Math.floor((lo+hi)/2);if(dateKey(new Date(mid))===key)lo=mid;else hi=mid;}return new Date(hi);}
+// Next local midnight; the Date constructor handles 23/25-hour DST days.
+export function nextReset(now=new Date()){return new Date(now.getFullYear(),now.getMonth(),now.getDate()+1);}
 export function streak(records:Record<string,Progress>,today:string){let k=records[today]?.complete?today:addDate(today,-1),n=0;while(records[k]?.complete){n++;k=addDate(k,-1);}return n;}
 export function format(v:number,cat:Category){return cat==='price'?new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:v%1?2:0,maximumFractionDigits:v%1?2:0}).format(v):`${new Intl.NumberFormat('en-US',{maximumFractionDigits:cat==='calories'||cat==='distance'?0:2}).format(v)} ${meta[cat].unit}`;}
 export function share(day:number,answers:Answer[],practice=false,gameUrl='https://zsnajar.github.io/dead-even/'){

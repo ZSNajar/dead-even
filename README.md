@@ -24,7 +24,7 @@ The static site is emitted to `dist/`.
 
 ## This edition
 
-Seven distinct daily runs (35 puzzles) are scheduled October 18–24, 2026. Each run is weight, calories, distance, height, then price. The reset is midnight America/New_York, including daylight saving time. Every puzzle is deterministic and identical for everyone on that date. Only the first seven days are authored for this testing release. Day seven is an ordinary daily, not a finale. Additional dates should be added to the content schedule; the product is an ongoing daily game. Unscheduled dates do not silently recycle previous challenges.
+Seven distinct daily runs (35 puzzles) are scheduled October 18–24, 2026. Each run is weight, calories, distance, height, then price. The reset is midnight in each player’s own time zone, including daylight saving time. Every puzzle is deterministic and identical for everyone on that date. Only the first seven days are authored for this testing release. Day seven is an ordinary daily, not a finale. Additional dates should be added to the content schedule; the product is an ongoing daily game. Unscheduled dates do not silently recycle previous challenges.
 
 Only today’s challenge unlocks for new daily play. Future dates are disabled in the interface and blocked by the entry guard, including practice. Past challenges can be replayed, and today can be replayed only after its daily is complete. Practice is stored separately. Daily submissions persist per date; already submitted rounds cannot be changed through the interface. Unfinished rounds and reveals resume after reload. Completed daily reports remain available through the edition menu.
 

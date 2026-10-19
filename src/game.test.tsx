@@ -15,7 +15,7 @@ const {week}=await import('./data');
 function buttons(){return [...document.querySelectorAll<HTMLButtonElement>('button')];}
 async function click(button:HTMLButtonElement|undefined){assert.ok(button,'Control must exist');await act(async()=>button!.dispatchEvent(new dom.window.MouseEvent('click',{bubbles:true})));}
 test('Only released challenges can be played; seven daily runs unlock on seven successive dates',async(t)=>{
- t.mock.timers.enable({apis:['Date'],now:new Date('2026-10-18T22:00:00Z')});
+ t.mock.timers.enable({apis:['Date'],now:new Date('2026-10-18T12:00:00Z')});
  let root=createRoot(document.getElementById('test-root')!);
  t.after(async()=>{await act(async()=>root.unmount());});
  await act(async()=>root.render(<App/>));
@@ -26,7 +26,7 @@ test('Only released challenges can be played; seven daily runs unlock on seven s
  for(let i=1;i<7;i++)assert.equal(rows[i].querySelectorAll('button').length,0,'Future dates have no play or practice button');
  await click(document.querySelector<HTMLButtonElement>('.close-modal')!);
  for(let d=0;d<7;d++){
-  if(d>0){await act(async()=>root.unmount());t.mock.timers.setTime(Date.parse(`2026-10-${18+d}T22:00:00Z`));root=createRoot(document.getElementById('test-root')!);await act(async()=>root.render(<App/>));}
+  if(d>0){await act(async()=>root.unmount());t.mock.timers.setTime(Date.parse(`2026-10-${18+d}T12:00:00Z`));root=createRoot(document.getElementById('test-root')!);await act(async()=>root.render(<App/>));}
   assert.equal(document.querySelectorAll('.day-ticket:disabled').length,6-d);
   await click(buttons().find(x=>x.classList.contains('play-button')));
   assert.ok(document.querySelector('.run-badge')?.textContent?.includes('DAILY'));
